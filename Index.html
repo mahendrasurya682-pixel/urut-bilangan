@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Urut Bilangan – Matematika Kelas IX</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f8f4;--card:#fff;--ink:#16324f;--mut:#5b6f84;--teal:#0f8b8d;--gold:#f2a900;--red:#d64a25;--ok:#1d8a4b;--line:#d5dfd6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1c2b;--card:#172a3d;--ink:#e8eef5;--mut:#9db0c4;--teal:#3cc3c5;--line:#284058;--ok:#4cc98a;--red:#ff8a65}}
+:root[data-theme=dark]{--bg:#0f1c2b;--card:#172a3d;--ink:#e8eef5;--mut:#9db0c4;--teal:#3cc3c5;--line:#284058;--ok:#4cc98a;--red:#ff8a65}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;font:17px/1.55 Nunito,system-ui,sans-serif;color:var(--ink);background-color:var(--bg);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:28px 28px}
+h1,h2,h3{font-family:'Baloo 2',system-ui,sans-serif;line-height:1.15;margin:.2em 0 .4em}
+h1{font-size:clamp(2.2rem,8vw,3.6rem);font-weight:800}h2{font-size:1.7rem}
+#top{position:sticky;top:0;z-index:5;display:flex;gap:8px;align-items:center;padding:8px 12px;background:var(--card);border-bottom:2px solid var(--ink);flex-wrap:wrap}
+#top.hide{display:none}
+.ib{border:2px solid var(--ink);background:var(--card);color:var(--ink);border-radius:10px;padding:6px 10px;font:700 15px Nunito,sans-serif;cursor:pointer}
+.pbw{flex:1;min-width:120px;display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px}
+.pb{flex:1;height:14px;border:2px solid var(--ink);border-radius:8px;overflow:hidden;background:var(--bg)}.pb i{display:block;height:100%;background:var(--teal);transition:width .4s}
+#vol{width:80px;accent-color:var(--teal)}
+main{max-width:760px;margin:0 auto;padding:20px 16px 48px}
+.card{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:20px;margin:14px 0;box-shadow:4px 4px 0 var(--ink)}
+.btn{display:inline-block;border:2px solid var(--ink);background:var(--gold);color:#16324f;border-radius:12px;padding:10px 20px;font:800 17px 'Baloo 2',sans-serif;cursor:pointer;box-shadow:3px 3px 0 var(--ink);margin:6px 6px 0 0}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}.btn.alt{background:var(--card);color:var(--ink)}.btn:disabled{opacity:.45;cursor:not-allowed}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+input[type=text],textarea{width:100%;padding:12px;border:2px solid var(--ink);border-radius:10px;font:inherit;background:var(--bg);color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.mi{text-align:left;border:2px solid var(--ink);background:var(--card);color:var(--ink);border-radius:12px;padding:14px;cursor:pointer;font:inherit;box-shadow:3px 3px 0 var(--ink)}
+.mi b{font:800 1.15rem 'Baloo 2',sans-serif;display:block}.mi span{color:var(--mut);font-size:14px}.mi.done{border-color:var(--ok)}
+.mi.done b::after{content:" ✔";color:var(--ok)}
+.nl{display:flex;justify-content:space-between;border-top:4px solid var(--ink);margin:26px 0 8px;padding:0}
+.nl span{position:relative;font-weight:800;padding-top:8px;font-size:15px}.nl span::before{content:"";position:absolute;top:-14px;left:50%;width:2px;height:12px;background:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:10px;min-height:58px;padding:8px;border:2px dashed var(--mut);border-radius:12px;margin:8px 0}
+.tile{border:2px solid var(--ink);background:var(--card);color:var(--ink);border-radius:10px;padding:10px 16px;font:800 1.3rem 'Baloo 2',sans-serif;cursor:pointer;min-width:64px}
+.row.ans .tile{background:var(--teal);color:#fff}.tile:disabled{cursor:default}
+.fb{padding:12px;border-radius:10px;border:2px solid;margin-top:10px;font-weight:700}.fb.ok{border-color:var(--ok);color:var(--ok)}.fb.no{border-color:var(--red);color:var(--red)}
+.dots{display:flex;gap:6px;justify-content:center;margin:10px 0}.dots i{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink)}.dots i.on{background:var(--gold)}
+.opt{display:flex;flex-wrap:wrap;gap:8px}.opt .ib.sel{background:var(--teal);color:#fff}
+.big{font:800 3rem 'Baloo 2',sans-serif;color:var(--teal)}ul{padding-left:20px}
+</style></head><body>
+<div id="top" class="hide">
+<button class="ib" data-go="menu" aria-label="Beranda">🏠 Home</button>
+<div class="pbw">Progres <div class="pb"><i id="pbi" style="width:0"></i></div><span id="pbt">0%</span></div>
+<button class="ib" id="mute" data-a="mute" aria-label="Bisukan musik">🔊</button>
+<input id="vol" type="range" min="0" max="100" value="50" aria-label="Volume musik">
+<button class="ib" data-a="exit">⏻ Exit</button>
+</div>
+<main id="app"></main>
+<script>
+const $=s=>document.querySelector(s);
+const S={name:'',done:new Set(),sc:{}};const TOTAL=8;let cur='welcome',Q=null,sl=0,ref={};
+/* ---- Musik (dibuat dengan WebAudio, tanpa file luar) ---- */
+let ac,mg,tm,vol=.5,muted=false;
+function music(){if(ac)return;try{ac=new(window.AudioContext||window.webkitAudioContext)();mg=ac.createGain();setVol();mg.connect(ac.destination);
+const n=[261.6,293.7,329.6,392,440,523.3],p=[0,2,4,2,1,3,5,3,0,2,4,5,4,2,1,0];let i=0;
+tm=setInterval(()=>{if(ac.state==='suspended')return;const o=ac.createOscillator(),g=ac.createGain();o.type='triangle';o.frequency.value=n[p[i++%16]];
+g.gain.setValueAtTime(.7,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+.5);o.connect(g);g.connect(mg);o.start();o.stop(ac.currentTime+.5)},420)}catch(e){}}
+function setVol(){if(mg)mg.gain.value=muted?0:vol*.3;$('#mute').textContent=(muted||vol==0)?'🔇':'🔊'}
+$('#vol').oninput=e=>{vol=e.target.value/100;muted=false;setVol()};
+/* ---- Data soal ---- */
+const L1=[{q:["-5","3","-8","0","6"],a:1},{q:["2,5","-1,2","0,8","-3,4"],a:1},{q:["-7","-2","4","-10","1"],a:0},{q:["0,35","0,3","0,53","0,5"],a:1}];
+const L2=[{q:["1/2","-3/4","2/3","-1/3"],a:1},{q:["3/4","0,7","2/3","0,8"],a:0},{q:["-1/2","-0,6","1/4","-2/5"],a:1},{q:["7/8","0,85","4/5","0,9"],a:0}];
+const L3=[{q:["45%","0,4","3/5","-0,5"],a:1},{q:["120%","1,1","5/4","9/10"],a:1},{q:["-25%","-1/3","-0,2","-3/10"],a:0},{q:["8%","0,1","1/20","-0,2","3/8"],a:1}];
+const EV=[{q:["-3/2","-1,2","-140%","0,5"],a:1},{q:["65%","2/3","0,6","5/8"],a:0},{q:["-4","-3,5","-9/2","-4,2"],a:1},{q:["15%","1/8","0,2","1/6"],a:1},{q:["3/2","140%","1,45","1,3"],a:0},{q:["-0,75","-2/3","-70%","-4/5"],a:1}];
+const LV={l1:['Level 1',L1,'Bilangan bulat dan desimal'],l2:['Level 2',L2,'Pecahan dan desimal'],l3:['Level 3',L3,'Campuran dengan persentase'],ev:['Evaluasi Akhir',EV,'Semua bentuk bilangan']};
+const v=s=>{s=s.trim();if(s.endsWith('%'))return parseFloat(s.replace(',','.'))/100;if(s.includes('/')){const[a,b]=s.split('/');return a/b}return parseFloat(s.replace(',','.'))};
+const fmt=x=>String(parseFloat(x.toFixed(3))).replace('.',',');
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
+const nline=(a,b)=>`<div class="nl">${Array.from({length:b-a+1},(_,i)=>`<span>${a+i}</span>`).join('')}</div>`;
+/* ---- Materi (gaya slide) ---- */
+const SL=[
+`<h2>Bilangan bulat negatif</h2><p>Pada garis bilangan, semakin ke kanan nilainya semakin besar.</p>${nline(-5,5)}<p><b>-8 &lt; -3 &lt; 0 &lt; 5</b></p><p>Untuk bilangan negatif, angka yang tampak lebih besar justru nilainya lebih kecil: -10 &lt; -2.</p>`,
+`<h2>Bilangan desimal</h2><p>Samakan banyak angka di belakang koma, lalu bandingkan.</p><p>0,35 dan 0,5 menjadi 0,35 dan 0,50.<br>Karena 50 &gt; 35, maka <b>0,35 &lt; 0,5</b>.</p><p>Bilangan desimal negatif: -1,2 &gt; -3,4 karena -1,2 lebih dekat ke nol.</p>`,
+`<h2>Pecahan</h2><p>Ubah ke desimal dengan membagi pembilang oleh penyebut.</p><ul><li>3/4 = 3 ÷ 4 = 0,75</li><li>2/3 ≈ 0,667</li><li>-1/2 = -0,5</li></ul><p>Jadi <b>2/3 &lt; 3/4</b>.</p>`,
+`<h2>Persentase</h2><p>p% berarti p per 100.</p><ul><li>45% = 45/100 = 0,45</li><li>8% = 0,08</li><li>120% = 1,2</li><li>-25% = -0,25</li></ul><p>Persentase di atas 100% berarti nilainya lebih dari 1.</p>`,
+`<h2>Langkah ampuh</h2><ol><li>Ubah semua bilangan ke desimal.</li><li>Bayangkan letaknya di garis bilangan.</li><li>Urutkan, lalu tulis dalam bentuk aslinya.</li></ol><p><b>Contoh:</b> urutkan 3/5, 55%, 0,58.<br>Desimalnya 0,6; 0,55; 0,58.<br>Urutan naik: <b>55% &lt; 0,58 &lt; 3/5</b>.</p>`];
+/* ---- Halaman ---- */
+const R={
+welcome:()=>`<div style="padding-top:8vh"><p style="font-weight:700;color:var(--teal);margin:0">Matematika Kelas IX</p><h1>Urut Bilangan</h1><p>Belajar mengurutkan bilangan bulat negatif, desimal, pecahan, dan persentase.</p><div class="card"><label for="nm"><b>Selamat datang! Siapa namamu?</b></label><input type="text" id="nm" maxlength="30" placeholder="Tulis namamu di sini" autocomplete="off"><p id="err" style="color:var(--red);margin:6px 0 0"></p><button class="btn" data-a="start">Mulai belajar</button></div></div>`,
+menu:()=>{const it=[['pet','Petunjuk','Cara memakai media ini'],['tuj','Tujuan pembelajaran','Apa yang akan kamu capai'],['mat','Materi','5 slide penjelasan'],['l1','Latihan Level 1','Bulat &amp; desimal'],['l2','Latihan Level 2','Pecahan &amp; desimal'],['l3','Latihan Level 3','Campuran &amp; persentase'],['ev','Evaluasi akhir','6 soal campuran'],['ref','Refleksi','Nilai pemahamanmu']];
+return`<h2>Halo, ${esc(S.name)}! 👋</h2><p>Pilih menu. Disarankan berurutan dari atas ke bawah.</p><div class="grid">${it.map(([k,t,d])=>`<button class="mi ${S.done.has(k)?'done':''}" data-go="${k}"><b>${t}</b><span>${d}</span></button>`).join('')}</div>`},
+pet:()=>`<h2>Petunjuk penggunaan</h2><div class="card"><ul><li><b>Home</b>: kembali ke menu utama.</li><li><b>Progres</b>: menunjukkan berapa bagian yang sudah kamu selesaikan.</li><li><b>Speaker &amp; penggeser</b>: mematikan musik dan mengatur volume.</li><li><b>Exit</b>: keluar dari media.</li><li><b>Latihan &amp; evaluasi</b>: ketuk bilangan satu per satu sesuai urutan yang diminta. Ketuk bilangan di baris jawaban untuk mengembalikannya. Tekan <b>Periksa</b> bila sudah yakin.</li></ul></div>${back('pet')}`,
+tuj:()=>`<h2>Tujuan pembelajaran</h2><div class="card"><p>Setelah belajar, kamu mampu:</p><ul><li>Membandingkan dan mengurutkan bilangan bulat negatif.</li><li>Membandingkan dan mengurutkan bilangan desimal.</li><li>Mengubah pecahan dan persentase menjadi desimal untuk dibandingkan.</li><li>Mengurutkan campuran bilangan bulat, desimal, pecahan, dan persentase dari terkecil ke terbesar atau sebaliknya.</li></ul></div>${back('tuj')}`,
+mat:()=>`<div class="card" style="min-height:300px">${SL[sl]}</div><div class="dots">${SL.map((_,i)=>`<i class="${i<=sl?'on':''}"></i>`).join('')}</div><button class="btn alt" data-a="sl" data-d="-1" ${sl==0?'disabled':''}>Kembali</button><button class="btn" data-a="sl" data-d="1">${sl==SL.length-1?'Selesai':'Lanjut'}</button>`,
+ref:()=>{const q=['mengurutkan bilangan bulat negatif','mengurutkan bilangan desimal','mengurutkan pecahan','mengurutkan persentase'],o=['Sudah paham','Cukup paham','Perlu latihan'];
+return`<h2>Refleksi</h2><p>Jujur pada dirimu sendiri. Seberapa paham kamu sekarang?</p>${q.map((t,i)=>`<div class="card"><b>Saya bisa ${t}.</b><div class="opt" style="margin-top:8px">${o.map(x=>`<button class="ib ${ref[i]==x?'sel':''}" data-a="rf" data-i="${i}" data-v="${x}">${x}</button>`).join('')}</div></div>`).join('')}<div class="card"><label for="cat"><b>Hal yang paling kamu pelajari hari ini:</b></label><textarea id="cat" rows="3"></textarea></div><button class="btn" data-a="saveref">Simpan refleksi</button>`},
+exit:()=>`<div class="card" style="text-align:center;margin-top:10vh"><div class="big">Sampai jumpa!</div><p>Terima kasih sudah belajar, ${esc(S.name)}. Progresmu: ${pct()}%.</p><p style="color:var(--mut)">Untuk menutup, tutup tab atau jendela ini.</p><button class="btn" data-go="menu">Kembali belajar</button></div>`
+};
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const back=k=>`<button class="btn" data-a="fin" data-k="${k}">Mengerti, ke menu</button>`;
+const pct=()=>Math.round(S.done.size/TOTAL*100);
+function go(p){cur=p;if(p=='mat')sl=0;if(LV[p]){startQ(p)}else{$('#app').innerHTML=R[p]()}
+$('#top').classList.toggle('hide',p=='welcome');const x=pct();$('#pbi').style.width=x+'%';$('#pbt').textContent=x+'%';scrollTo(0,0)}
+/* ---- Kuis ---- */
+function startQ(id){Q={id,list:shuf(LV[id][1]),i:0,score:0,ans:[],chk:false,end:false};Q.pool=shuf(Q.list[0].q.map((_,i)=>i));drawQ()}
+function drawQ(){const c=$('#app');if(Q.end){const n=Q.list.length,s=Math.round(Q.score/n*100),ev=Q.id=='ev';
+c.innerHTML=`<div class="card" style="text-align:center"><h2>${LV[Q.id][0]} selesai</h2><div class="big">${s}</div><p>${Q.score} dari ${n} soal benar. ${s>=75?'Hebat, '+esc(S.name)+'! Pemahamanmu sudah kuat.':s>=50?'Cukup baik, '+esc(S.name)+'. Baca lagi materinya lalu coba ulang.':'Jangan menyerah, '+esc(S.name)+'. Buka materi dulu, lalu coba lagi.'}</p><button class="btn alt" data-go="${Q.id}">Ulangi</button>${ev?'<button class="btn" data-go="ref">Lanjut ke refleksi</button>':''}<button class="btn alt" data-go="mat">Buka materi</button><button class="btn alt" data-go="menu">Menu</button></div>`;return}
+const it=Q.list[Q.i],n=it.q.length,asc=!!it.a;
+c.innerHTML=`<h2>${LV[Q.id][0]}: ${LV[Q.id][2]}</h2><p>Soal ${Q.i+1} dari ${Q.list.length}</p><div class="card"><p><b>Urutkan dari yang ${asc?'terkecil ke terbesar':'terbesar ke terkecil'}.</b></p><p style="margin:0;color:var(--mut)">Pilihan:</p><div class="row">${Q.pool.map(i=>`<button class="tile" data-a="pick" data-i="${i}" ${Q.chk?'disabled':''}>${it.q[i]}</button>`).join('')}</div><p style="margin:0;color:var(--mut)">Jawabanmu (${asc?'kecil → besar':'besar → kecil'}):</p><div class="row ans">${Q.ans.map(i=>`<button class="tile" data-a="unpick" data-i="${i}" ${Q.chk?'disabled':''}>${it.q[i]}</button>`).join('')}</div>${Q.chk?Q.fb:''}<div>${Q.chk?`<button class="btn" data-a="next">${Q.i==Q.list.length-1?'Lihat hasil':'Soal berikutnya'}</button>`:`<button class="btn" data-a="check" ${Q.ans.length<n?'disabled':''}>Periksa</button>`}</div></div>`}
+function check(){const it=Q.list[Q.i];let s=[...it.q].sort((a,b)=>v(a)-v(b));if(!it.a)s.reverse();const mine=Q.ans.map(i=>it.q[i]),ok=s.join()==mine.join();
+if(ok)Q.score++;Q.chk=true;Q.fb=`<div class="fb ${ok?'ok':'no'}">${ok?'Tepat! ✔':'Belum tepat.'} Urutan yang benar: ${s.map(x=>`${x} (${fmt(v(x))})`).join(it.a?' &lt; ':' &gt; ')}</div>`;drawQ()}
+/* ---- Aksi ---- */
+document.addEventListener('click',e=>{const t=e.target.closest('[data-go],[data-a]');if(!t)return;
+if(t.dataset.go){if(t.dataset.go=='ev'&&0)return;return go(t.dataset.go)}
+const a=t.dataset.a,i=+t.dataset.i;
+if(a=='start'){const n=$('#nm').value.trim();if(!n){$('#err').textContent='Tulis namamu dulu ya.';return}S.name=n;music();if(ac&&ac.state=='suspended')ac.resume();go('menu')}
+else if(a=='mute'){muted=!muted;setVol()}
+else if(a=='exit'){clearInterval(tm);tm=null;if(ac){ac.close();ac=null;mg=null}go('exit')}
+else if(a=='fin'){S.done.add(t.dataset.k);go('menu')}
+else if(a=='sl'){const d=+t.dataset.d;if(sl+d>=SL.length){S.done.add('mat');return go('menu')}sl+=d;$('#app').innerHTML=R.mat();scrollTo(0,0)}
+else if(a=='pick'){Q.pool=Q.pool.filter(x=>x!=i);Q.ans.push(i);drawQ()}
+else if(a=='unpick'){Q.ans=Q.ans.filter(x=>x!=i);Q.pool.push(i);drawQ()}
+else if(a=='check')check();
+else if(a=='next'){Q.i++;if(Q.i>=Q.list.length){Q.end=true;S.done.add(Q.id);S.sc[Q.id]=Q.score;const x=pct();$('#pbi').style.width=x+'%';$('#pbt').textContent=x+'%'}else{Q.ans=[];Q.chk=false;Q.pool=shuf(Q.list[Q.i].q.map((_,k)=>k))}drawQ();scrollTo(0,0)}
+else if(a=='rf'){ref[i]=t.dataset.v;const y=scrollY;$('#app').innerHTML=R.ref();scrollTo(0,y)}
+else if(a=='saveref'){if(Object.keys(ref).length<4){alert('Pilih jawaban untuk keempat pernyataan dulu.');return}S.done.add('ref');const need=Object.values(ref).filter(x=>x=='Perlu latihan').length;
+$('#app').innerHTML=`<div class="card" style="text-align:center"><h2>Refleksi tersimpan</h2><p>${need?'Kamu menandai '+need+' topik yang masih perlu latihan. Buka materi atau ulangi latihan levelnya.':'Luar biasa, kamu merasa paham semua topik. Terus berlatih ya!'}</p><button class="btn" data-go="menu">Ke menu utama</button><button class="btn alt" data-go="exit">Selesai &amp; keluar</button></div>`;const x=pct();$('#pbi').style.width=x+'%';$('#pbt').textContent=x+'%'}
+});
+document.addEventListener('keydown',e=>{if(e.key=='Enter'&&cur=='welcome')document.querySelector('[data-a=start]').click()});
+go('welcome');
+</script></body></html>
